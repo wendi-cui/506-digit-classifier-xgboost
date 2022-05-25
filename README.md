@@ -10,3 +10,9 @@ Important files:
 * `initial-model-training.ipynb`: preprocess the dataset, train the models
 * `optimization`: this folder contains alternative versions of the trained models, using gridsearch
 * `rf_grid_model.tar.gz`: this is a compressed file containing the `pkl` file because the original was too large for github.
+
+
+I was inspired by these other apps:
+* http://benjaminlu-ds-digits.herokuapp.com/
+* https://benjaminlu-ds-digits-v2.herokuapp.com/
+* https://quickdraw-10-classification.herokuapp.com/
