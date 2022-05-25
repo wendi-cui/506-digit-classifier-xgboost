@@ -34,8 +34,8 @@ filename.close()
 
 ########### define variables
 tabtitle='digits classifier'
-sourceurl = 'https://www.kaggle.com/burak3ergun/loan-data-set'
-githublink = 'https://github.com/plotly-dash-apps/504-mortgage-loans-predictor'
+sourceurl = 'https://scikit-learn.org/stable/auto_examples/classification/plot_digits_classification.html'
+githublink = 'https://github.com/plotly-dash-apps/506-digit-classifier-xgboost'
 canvas_size = 200
 
 ########### BLANK FIGURE
@@ -113,6 +113,7 @@ def array_to_data_url(img, dtype=None):
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
+app.config['suppress_callback_exceptions'] = True
 app.title=tabtitle
 
 
