@@ -16,7 +16,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pickle
 
-
 ########### open the pickle file ######
 
 filename = open('model_outputs/scaler.pkl', 'rb')
