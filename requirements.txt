@@ -1,5 +1,5 @@
 dash-canvas==0.1.0
-xgboost==1.6.1
+xgboost==1.5.1
 
 Brotli==1.0.9
 click==8.1.3
