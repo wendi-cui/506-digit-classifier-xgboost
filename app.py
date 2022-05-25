@@ -18,9 +18,20 @@ import pickle
 
 
 ########### open the pickle file ######
-filename = open('analysis/tree_model.pkl', 'rb')
-tree_model = pickle.load(filename)
+
+filename = open('model_outputs/scaler.pkl', 'rb')
+scaler = pickle.load(filename)
 filename.close()
+
+filename = open('model_outputs/rf_model.pkl', 'rb')
+rf_model = pickle.load(filename)
+filename.close()
+
+filename = open('model_outputs/xgb_model.pkl', 'rb')
+xgb_model = pickle.load(filename)
+filename.close()
+
+
 
 ########### define variables
 tabtitle='digits classifier'
@@ -179,18 +190,27 @@ def update_data(string):
         fig.update(layout_coloraxis_showscale=False)
         fig.update(layout_showlegend=False)
 
+        # pickle the user input
+        filename = open('user-input-digit.pkl', 'wb')
+        pickle.dump(array_to_data_output, filename)
+        filename.close()
+
         # convert the user input to the format expected by the model
         some_digit_array = np.reshape(array_to_data_output.values, -1)
         print('some_digit_array',[some_digit_array])
+
+        # standardize
+        some_digit_scaled = scaler.transform([some_digit_array])
+
         # make a prediction: Random Forest
-        rf_pred = tree_model.predict([some_digit_array])
-        rf_prob_array = tree_model.predict_proba([some_digit_array])
+        rf_pred = rf_model.predict(some_digit_scaled)
+        rf_prob_array = rf_model.predict_proba(some_digit_scaled)
         rf_prob = max(rf_prob_array[0])
         rf_prob=round(rf_prob*100,2)
 
         # make a prediction: XG Boost
-        xgb_pred = tree_model.predict([some_digit_array])
-        xgb_prob_array = tree_model.predict_proba([some_digit_array])
+        xgb_pred = xgb_model.predict(some_digit_scaled)
+        xgb_prob_array = xgb_model.predict_proba(some_digit_scaled)
         xgb_prob = max(xgb_prob_array[0])
         xgb_prob=round(xgb_prob*100,2)
 
