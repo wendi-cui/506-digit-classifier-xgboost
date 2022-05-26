@@ -16,3 +16,4 @@ I was inspired by these other apps:
 * http://benjaminlu-ds-digits.herokuapp.com/
 * https://benjaminlu-ds-digits-v2.herokuapp.com/
 * https://quickdraw-10-classification.herokuapp.com/
+* https://github.com/plotly/dash-sample-apps/tree/main/apps/dash-canvas-ocr
