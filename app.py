@@ -192,10 +192,13 @@ app.layout = html.Div(children=[
                 html.H6(id='xgb-prediction', children='...'),
                 html.H6(id='xgb-probability', children='waiting for inputs'),
             ], className='three columns'),
+
             html.Div([
                 dcc.Graph(id='page-2-graphic', figure=fig)
-            ],className='two columns')
+            ],className='two columns'),
+            
         ], className="twelve columns"),
+
         html.Br(),
         html.A('Code on Github', href=githublink),
         html.Br(),
