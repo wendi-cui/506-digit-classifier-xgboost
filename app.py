@@ -26,7 +26,7 @@ filename = open('model_outputs/rf_model.pkl', 'rb')
 rf_model = pickle.load(filename)
 filename.close()
 
-filename = open('model_outputs/xgb_model.pkl', 'rb')
+filename = open('model_outputs/xgb_model_enhanced.pkl', 'rb')
 xgb_model = pickle.load(filename)
 filename.close()
 
