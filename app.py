@@ -101,7 +101,7 @@ mydata = [go.Bar(
 )]
 
 mylayout = go.Layout(
-    title='Evaluation Metrics for Logistic Regression Model (Testing Dataset = 127 passengers)',
+    title='Evaluation Metrics for XGBoost Model',
     xaxis = {'title': 'Metrics'},
     yaxis = {'title': 'Percent'}, 
 
@@ -195,7 +195,7 @@ app.layout = html.Div(children=[
 
             html.Div([
                 dcc.Graph(id='page-2-graphic', figure=fig)
-            ],className='two columns'),
+            ],className='six columns'),
 
         ], className="twelve columns"),
 
