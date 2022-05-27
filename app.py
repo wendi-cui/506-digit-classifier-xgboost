@@ -32,7 +32,7 @@ filename.close()
 
 
 filename = open('model_outputs/eval_scores.pkl', 'rb')
-scores = pickle.load(filename)
+eval_scores = pickle.load(filename)
 filename.close()
 
 
