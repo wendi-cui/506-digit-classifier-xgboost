@@ -26,8 +26,13 @@ filename = open('model_outputs/rf_model.pkl', 'rb')
 rf_model = pickle.load(filename)
 filename.close()
 
-filename = open('model_outputs/xgb_model.pkl', 'rb')
+filename = open('model_outputs/xgb_model_enhanced.pkl', 'rb')
 xgb_model = pickle.load(filename)
+filename.close()
+
+
+filename = open('model_outputs/eval_scores.pkl', 'rb')
+scores = pickle.load(filename)
 filename.close()
 
 
@@ -35,7 +40,7 @@ filename.close()
 ########### define variables
 tabtitle='digits classifier'
 sourceurl = 'https://scikit-learn.org/stable/auto_examples/classification/plot_digits_classification.html'
-githublink = 'https://github.com/plotly-dash-apps/506-digit-classifier-xgboost'
+githublink = 'https://github.com/wendi-cui/506-digit-classifier-xgboost'
 canvas_size = 200
 
 ########### BLANK FIGURE
@@ -72,6 +77,36 @@ layout= go.Layout(
         )
 blank_fig = go.Figure(data, layout)
 
+
+
+#############SCORE FIG
+Viridis=[
+"#440154", "#440558", "#450a5c", "#450e60", "#451465", "#461969",
+"#461d6d", "#462372", "#472775", "#472c7a", "#46307c", "#45337d",
+"#433880", "#423c81", "#404184", "#3f4686", "#3d4a88", "#3c4f8a",
+"#3b518b", "#39558b", "#37598c", "#365c8c", "#34608c", "#33638d",
+"#31678d", "#2f6b8d", "#2d6e8e", "#2c718e", "#2b748e", "#29788e",
+"#287c8e", "#277f8e", "#25848d", "#24878d", "#238b8d", "#218f8d",
+"#21918d", "#22958b", "#23988a", "#239b89", "#249f87", "#25a186",
+"#25a584", "#26a883", "#27ab82", "#29ae80", "#2eb17d", "#35b479",
+"#3cb875", "#42bb72", "#49be6e", "#4ec16b", "#55c467", "#5cc863",
+"#61c960", "#6bcc5a", "#72ce55", "#7cd04f", "#85d349", "#8dd544",
+"#97d73e", "#9ed93a", "#a8db34", "#b0dd31", "#b8de30", "#c3df2e",
+"#cbe02d", "#d6e22b", "#e1e329", "#eae428", "#f5e626", "#fde725"]
+
+mydata = [go.Bar(
+    x=list(eval_scores.keys()),
+    y=list(eval_scores.values()),
+    marker=dict(color=Viridis[::12])
+)]
+
+mylayout = go.Layout(
+    title='Evaluation Metrics for Logistic Regression Model (Testing Dataset = 127 passengers)',
+    xaxis = {'title': 'Metrics'},
+    yaxis = {'title': 'Percent'}, 
+
+)
+fig = go.Figure(data=mydata, layout=mylayout)
 
 
 ############ FUNCTIONS
@@ -157,6 +192,9 @@ app.layout = html.Div(children=[
                 html.H6(id='xgb-prediction', children='...'),
                 html.H6(id='xgb-probability', children='waiting for inputs'),
             ], className='three columns'),
+            html.Div([
+                dcc.Graph(id='page-2-graphic', figure=fig)
+            ],className='two columns')
         ], className="twelve columns"),
         html.Br(),
         html.A('Code on Github', href=githublink),
