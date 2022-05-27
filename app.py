@@ -26,7 +26,7 @@ filename = open('model_outputs/rf_model.pkl', 'rb')
 rf_model = pickle.load(filename)
 filename.close()
 
-filename = open('model_outputs/xgb_model_enhanced.pkl', 'rb')
+filename = open('model_outputs/xgb_model.pkl', 'rb')
 xgb_model = pickle.load(filename)
 filename.close()
 
@@ -196,7 +196,7 @@ app.layout = html.Div(children=[
             html.Div([
                 dcc.Graph(id='page-2-graphic', figure=fig)
             ],className='two columns'),
-            
+
         ], className="twelve columns"),
 
         html.Br(),
